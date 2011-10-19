@@ -6,7 +6,8 @@ uses
   TypConst in '..\TypConst.pas',
   Options in 'Form\Options.pas' {fmOptions},
   ufAbout in 'Form\ufAbout.pas' {AboutBox},
-  uData in '..\uData.pas' {DataModule1: TDataModule};
+  uData in '..\uData.pas' {DataModule1: TDataModule},
+  uBuldozer in '..\uBuldozer.pas';
 
 {$R *.res}
 

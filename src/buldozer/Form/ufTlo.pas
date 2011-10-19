@@ -4,7 +4,7 @@ interface
 
 uses
   Windows, Messages, SysUtils, Variants, Classes, Graphics, Controls, Forms,
-  Dialogs, AppEvnts, TypConst, Menus, XPMan;
+  Dialogs, AppEvnts, TypConst, Menus, XPMan, ActnList;
 
 
 type
@@ -19,6 +19,7 @@ type
     N2: TMenuItem;
     Exit1: TMenuItem;
     About1: TMenuItem;
+    ActionList1: TActionList;
     procedure FormCreate(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
@@ -125,8 +126,8 @@ begin
         inc(NomLevel);
         Kart:=Levels[NomLevel];
         Caption:='Bulldozer - Level' + intToStr(NomLevel);
-        ResetPole;
      end;
+     Invalidate;
 end;
 
 procedure TfmTlo.BLeft;

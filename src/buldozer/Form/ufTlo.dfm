@@ -58,4 +58,8 @@ object fmTlo: TfmTlo
       end
     end
   end
+  object ActionList1: TActionList
+    Left = 16
+    Top = 56
+  end
 end
