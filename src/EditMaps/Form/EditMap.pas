@@ -9,8 +9,6 @@ uses
 
 type
   TfrmEdit = class(TForm)
-    DrawGrid1: TDrawGrid;
-    ImageList1: TImageList;
     CoolBar1: TCoolBar;
     ToolBar1: TToolBar;
     ToolButton1: TToolButton;
@@ -29,7 +27,6 @@ type
     Refresh1: TMenuItem;
     Options1: TMenuItem;
     ToolBar2: TToolBar;
-    XPManifest1: TXPManifest;
     ActionList1: TActionList;
     ActionEdit: TAction;
     ToolBar3: TToolBar;
@@ -51,6 +48,7 @@ type
     Refresh2: TMenuItem;
     ListView1: TListView;
     ImageListTumb: TImageList;
+    DrawGrid1: TDrawGrid;
     procedure FormCreate(Sender: TObject);
     procedure DrawGrid1SelectCell(Sender: TObject; ACol, ARow: Integer;
       var CanSelect: Boolean);
@@ -91,6 +89,8 @@ var
 
 implementation
 
+uses uData;
+
 {$R *.dfm}
 
 procedure TfrmEdit.FormCreate(Sender: TObject);
@@ -120,17 +120,17 @@ begin
   TmpBit.Height := MinBarHW;
   TmpBit.PixelFormat := pf24bit;
 }
-  ImageList1.GetBitmap(0, TmpBit);
+  DataModule1.ImageList1.GetBitmap(0, TmpBit);
   StretchBlt(Canvas.Handle,x,y,MinBarHW,MinBarHW, TmpBit.Canvas.Handle,0,0,32,32,SRCCOPY);
   case typ of
-    10,11: ImageList1.GetBitmap(2, TmpBit);
-    22:ImageList1.GetBitmap(7, TmpBit);
+    10,11: DataModule1.ImageList1.GetBitmap(2, TmpBit);
+    22:DataModule1.ImageList1.GetBitmap(7, TmpBit);
      end;
   StretchBlt(Canvas.Handle,x,y,MinBarHW,MinBarHW, TmpBit.Canvas.Handle,0,0,32,32,SRCCOPY);
   case typ of
      1, 11, 21:
      Begin
-       ImageList1.GetBitmap(1, TmpBit);
+       DataModule1.ImageList1.GetBitmap(1, TmpBit);
        TmpBit.TransparentColor := TmpBit.Canvas.Pixels[0,0];
        TmpBit.Transparent := true;
        //Canvas.Draw(x,y,TmpBit);
@@ -367,21 +367,21 @@ end;
 procedure TfrmEdit.DrawGrid1DrawCell(Sender: TObject; ACol, ARow: Integer;
   Rect: TRect; State: TGridDrawState);
 begin
-       ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,0);
+       DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,0);
        case Map[ARow,ACol] of
-         1:ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,1);
-         10,11:ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,2);
-         22:ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,7);
+         1:DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,1);
+         10,11:DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,2);
+         22:DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,7);
          20,21:
               case Napr of
-                 1:ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,3);
-                 2:ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,4);
-                 3:ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,5);
-                 4:ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,6);
+                 1:DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,3);
+                 2:DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,4);
+                 3:DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,5);
+                 4:DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,6);
                end;
         end;
        case Levels[NomLev][ARow,ACol] of
-         1,11,21:ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,1);
+         1,11,21:DataModule1.ImageList1.Draw(DrawGrid1.Canvas,Rect.Left,Rect.Top,1);
        end;
 end;
 

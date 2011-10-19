@@ -15,7 +15,6 @@ object fmTlo: TfmTlo
   Menu = MainMenu1
   OldCreateOrder = False
   OnCreate = FormCreate
-  OnDestroy = FormDestroy
   OnKeyDown = FormKeyDown
   OnPaint = FormPaint
   PixelsPerInch = 96
@@ -58,9 +57,5 @@ object fmTlo: TfmTlo
         OnClick = About1Click
       end
     end
-  end
-  object XPManifest1: TXPManifest
-    Left = 88
-    Top = 8
   end
 end

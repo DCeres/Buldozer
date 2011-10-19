@@ -19,9 +19,7 @@ type
     N2: TMenuItem;
     Exit1: TMenuItem;
     About1: TMenuItem;
-    XPManifest1: TXPManifest;
     procedure FormCreate(Sender: TObject);
-    procedure FormDestroy(Sender: TObject);
     procedure FormPaint(Sender: TObject);
     procedure FormKeyDown(Sender: TObject; var Key: Word;
       Shift: TShiftState);
@@ -44,56 +42,34 @@ type
     Function Stop(ix,iy:integer):boolean;
   public
     Kart  :Karta;
-    Mal:array [0..7]of TBitmap;
-    { Public declarations }
   end;
+
 var
   fmTlo: TfmTlo;
 
 implementation
 
 {$R *.dfm}
-uses options, ufAbout;
-{
-var
-        hdcM,hdcwin:HDC;
-        Bitmap:HBITMAP;
-        i:integer;
-begin
-        HdcWin :=GetDC(Form1.Handle);
-        hdcM := CreateCompatibleDC(HdcWin);
-        Bitmap := CreateCompatibleBitmap(hdcWin,150,300);
-        SelectObject(hdcM,Bitmap);
-        Rectangle(hdcM,-1,-1,151,301);
-        for i := 0 to 9 do
-        begin
-               Rectangle(hdcM,i*30 ,i*15,i*30+70  ,i*15+50);
-        end;
-        BitBlt(hdcWin,0,0,150,300,hdcM,0,0,SRCCOPY);
-        DeleteDC(HdcM);
-        DeleteObject(Bitmap);
-        ReleaseDC(Form1.Handle,hdcWin);
+uses options, ufAbout, uData;
 
-end;
-}
 procedure TfmTlo.BarPole(x, y:integer; typ: byte);
 begin
-       Canvas.Draw(x,y,mal[0]);
-       case typ of
-         1:Canvas.Draw(x,y,mal[1]);
-         10,11:Canvas.Draw(x,y,mal[2]);
-         22:Canvas.Draw(x,y,mal[7]);
+  DataModule1.ImageList1.Draw(Canvas, x,y, 0);
+  case typ of
+    1: DataModule1.ImageList1.Draw(Canvas, x,y, 1);
+    10,11: DataModule1.ImageList1.Draw(Canvas, x,y, 2);
+    22: DataModule1.ImageList1.Draw(Canvas, x,y, 7);
 
-         20,21:case Napr of
-                 1:Canvas.Draw(x,y,mal[3]);
-                 2:Canvas.Draw(x,y,mal[4]);
-                 3:Canvas.Draw(x,y,mal[5]);
-                 4:Canvas.Draw(x,y,mal[6]);
-               end;
-       end;
-       case typ of
-         1,11,21:Canvas.Draw(x,y,mal[1]);
-       end;
+    20,21:case Napr of
+           1: DataModule1.ImageList1.Draw(Canvas, x,y, 3);
+           2: DataModule1.ImageList1.Draw(Canvas, x,y, 4);
+           3: DataModule1.ImageList1.Draw(Canvas, x,y, 5);
+           4: DataModule1.ImageList1.Draw(Canvas, x,y, 6);
+         end;
+  end;
+  case typ of
+    1,11,21: DataModule1.ImageList1.Draw(Canvas, x,y, 1);
+  end;
 end;
 
 procedure TfmTlo.ResetPole;
@@ -115,34 +91,15 @@ end;
 procedure TfmTlo.FormCreate(Sender: TObject);
 var i:integer;
 begin
-     for i:=0 to 7 do
-       mal[i]:=TBitmap.Create;
-     mal[0].LoadFromFile('res/mal05.bmp');
-     mal[1].LoadFromFile('res/mal01.bmp');
-     mal[2].LoadFromFile('res/mal03.bmp');
-     mal[3].LoadFromFile('res/mal04N.bmp');
-     mal[4].LoadFromFile('res/mal04L.bmp');
-     mal[5].LoadFromFile('res/mal04V.bmp');
-     mal[6].LoadFromFile('res/mal04R.bmp');
-     mal[7].LoadFromFile('res/mal02.bmp');
-     for i:=1 to 6 do
-       mal[i].Transparent:=true;
-     NomLevel:=1;
-     Kart:=Levels[NomLevel];
-     Napr:=1;
-    Caption:='Bulldozer - Level ' + intToStr(NomLevel);
-end;
-
-procedure TfmTlo.FormDestroy(Sender: TObject);
-var i:integer;
-begin
-     for i:=0 to 7 do
-       mal[i].Free;
+  NomLevel:=1;
+  Kart:=Levels[NomLevel];
+  Napr:=1;
+  Caption:='Bulldozer - Level ' + intToStr(NomLevel);
 end;
 
 procedure TfmTlo.FormPaint(Sender: TObject);
 begin
-     ResetPole;
+  ResetPole;
 end;
 
 procedure TfmTlo.FormKeyDown(Sender: TObject; var Key: Word;

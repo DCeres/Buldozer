@@ -78,6 +78,7 @@ begin
   TmpBit.PixelFormat:=pf24bit;
   with Image1 do
   Begin
+{
      StretchBlt(Canvas.Handle,x,y,MinBarHW,MinBarHW,
             fmTlo.mal[0].Canvas.Handle,0,0,32,32,SRCCOPY);
      case typ of
@@ -98,6 +99,7 @@ begin
          Canvas.Draw(x,y,TmpBit);
        end;
      end;
+     }
   End;
 end;
 

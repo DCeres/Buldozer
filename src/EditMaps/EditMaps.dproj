@@ -58,6 +58,10 @@
 				<Form>frmEdit</Form>
 			</DCCReference>
 			<DCCReference Include="..\TypConst.pas"/>
+			<DCCReference Include="..\uData.pas">
+				<Form>DataModule1</Form>
+				<DesignClass>TDataModule</DesignClass>
+			</DCCReference>
 			<BuildConfiguration Include="Debug">
 				<Key>Cfg_2</Key>
 				<CfgParent>Base</CfgParent>
@@ -108,7 +112,7 @@
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Language>
-						<Language Name="RootDir">EditMaps\</Language>
+						<Language Name="RootDir">D:\home\Dima\Devel\Delphi\Buldozer\src\EditMaps\</Language>
 					</Language>
 					<Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\bcboffice2k150.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>
