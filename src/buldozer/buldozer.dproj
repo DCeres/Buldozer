@@ -121,7 +121,7 @@
 						<VersionInfoKeys Name="Comments"/>
 					</VersionInfoKeys>
 					<Language>
-						<Language Name="RootDir">D:\home\Dima\Devel\Delphi\Buldozer\src\buldozer\</Language>
+						<Language Name="RootDir">Z:\Buldozer\src\buldozer\</Language>
 					</Language>
 					<Excluded_Packages>
 						<Excluded_Packages Name="$(BDSBIN)\bcboffice2k150.bpl">Embarcadero C++Builder Office 2000 Servers Package</Excluded_Packages>

@@ -1,12 +1,11 @@
 object fmTlo: TfmTlo
   Left = 236
   Top = 130
-  BorderIcons = [biSystemMenu, biMinimize]
-  BorderStyle = bsSingle
   Caption = 'Bulldozer - '
-  ClientHeight = 383
-  ClientWidth = 640
+  ClientHeight = 381
+  ClientWidth = 638
   Color = clBtnFace
+  DoubleBuffered = True
   Font.Charset = DEFAULT_CHARSET
   Font.Color = clWindowText
   Font.Height = -11

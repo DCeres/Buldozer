@@ -13,9 +13,9 @@ uses
 
 begin
   Application.Initialize;
+  Application.CreateForm(TDataModule1, DataModule1);
   Application.CreateForm(TfmTlo, fmTlo);
   Application.CreateForm(TfmOptions, fmOptions);
   Application.CreateForm(TAboutBox, AboutBox);
-  Application.CreateForm(TDataModule1, DataModule1);
   Application.Run;
 end.
